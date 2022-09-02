@@ -1,0 +1,67 @@
+<!-- calculations (finding avg temp)  -->
+<%sum=0%> <% for (let data of datas) {%> <%sum=sum+data.temperature%> <% } %>
+<%avg=(sum/datas.length).toFixed(2)%>
+<!-- calculations  -->
+
+<% layout('boilerplate') %>
+<div class="mt-5 container">
+  <h1 class="mb-5 display-5 text-center">INFORMATION DISPLAY</h1>
+  <div class="row justify-content-center align-items-center">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center col-12 col-md-6"
+    >
+      <div
+        class="card <%=(avg>60? ' text-bg-danger':avg>40? 'text-bg-warning':'text-bg-success' )%> mb-3"
+        style="width: 20rem"
+      >
+        <div class="card-header">Air Quality Information</div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%=(avg>50? 'Danger':avg>40? 'Warning':'Stable' )%> (Dynamic)
+          </h5>
+          <p class="card-text">Average Temperature: <%=avg%></p>
+          <p class="card-text">(some dynamic text)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- logs  -->
+    <div
+      class="d-flex flex-column justify-content-center align-items-center mt-3 col-12 col-md-6"
+    >
+      <div class="card" style="width: 20rem">
+        <ul class="list-group list-group-flush">
+          <h1 class="text-center">Logs</h1>
+          <% for (let data of datas) {%>
+
+          <li class="list-group-item">
+            <%="Time: "+data.time+" Temperature: "+data.temperature%>
+          </li>
+
+          <% } %>
+        </ul>
+        <!-- logs  -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- notes -->
+
+<div class="mt-5 container">
+  <hr />
+  <ul>
+    <h4>Dynamic functions:</h4>
+    <li>average temp is dynamic</li>
+    <li>
+      when avg temp > 60 or > 40 or < 40
+      <ul>
+        <li>title updates to danger, warning or stable</li>
+        <li>color change to yellow, red or green</li>
+      </ul>
+    </li>
+    <li>...</li>
+    <li>...</li>
+  </ul>
+</div>
+<!-- notes -->
